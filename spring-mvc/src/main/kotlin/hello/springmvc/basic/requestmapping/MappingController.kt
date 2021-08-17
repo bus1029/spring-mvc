@@ -1,11 +1,9 @@
 package hello.springmvc.basic.requestmapping
 
+import hello.springmvc.basic.HelloData
 import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class MappingController {
@@ -52,5 +50,17 @@ class MappingController {
   fun mappingProduces(): String {
     logger.info("mappingProduces: text/html")
     return "ok"
+  }
+
+  @ResponseBody
+  @RequestMapping("/model-attribute-v1")
+  fun modelAttributeV1(@ModelAttribute helloData: HelloData): String {
+    return helloData.toString()
+  }
+
+  @ResponseBody
+  @RequestMapping("/model-attribute-v2")
+  fun modelAttributeV2(helloData: HelloData): String {
+    return helloData.toString()
   }
 }
